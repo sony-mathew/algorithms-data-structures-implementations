@@ -8,14 +8,17 @@ void selection_sort(int *ar, int size)
 {
   int smallest, pos, j;
   REP(i, size - 1) {
+    
     smallest = ar[i];
     pos = i;
+
     for(j = i + 1; j < size; j++) {
       if (smallest > ar[j]) {
         smallest = ar[j];
         pos = j;
       }
     }
+
     if (pos != i) {
       ar[pos] = ar[i];
       ar[i] = smallest;

@@ -1,7 +1,7 @@
 # trying to add this to the array prototype itself
 
 class Array
-  def bubble_sort
+  def bubble_sort!
     size.times do |i|
       ((size - 1) - i).times do |j|
         if self[j] > self[j + 1]
@@ -23,12 +23,12 @@ def interact
   size.times { arr.push(gets.chomp.to_i) }
 
   puts "Current array : "
-  p arr
+  puts arr.inspect
 
-  arr.bubble_sort
+  arr.bubble_sort!
 
   puts "Sorted Array : "
-  p arr
+  puts arr.inspect
 end
 
 interact
