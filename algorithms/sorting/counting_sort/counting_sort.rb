@@ -2,17 +2,17 @@ class Array
 
   public
 
-    def counting_sort(k)
+    def counting_sort(max_element)
       c = []
       b = []
 
-      (0..k).each { |i| c.push(0) }
+      (0..max_element).each { |i| c.push(0) }
 
       (0...size).each { |j| c[self[j]] += 1 }
 
-      (1..k).each { |i| c[i] = c[i] + c[i - 1] }
+      (1..max_element).each { |i| c[i] = c[i] + c[i - 1] }
 
-      (0..(size - 1)).to_a.reverse.each do |j|
+      (0...size).to_a.reverse.each do |j|
         b[ c[ self[j] ] - 1 ] = self[j]
         c[ self[j] ] -= 1
       end

@@ -19,6 +19,8 @@ void counting_sort(int *a, int *b, int k, int size)
     b[c[a[j]] - 1] = a[j];
     --c[a[j]];
   }
+
+  delete [] c;
 }
 
 int main()
