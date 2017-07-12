@@ -1,7 +1,7 @@
 # Implementations of some algorithms and data strutures
 
 ## Motivation
-To satisfy my long term quest to learn algos and ds as well as to fight the inferiority complex of taking Electronics major for graduation.
+To satisfy my long term quest to learn algos and ds as well as to fight the inferiority complex infront of cs grads as I had taken electronics & communication major for graduation.
 
 ## What's in it?
 
@@ -9,7 +9,7 @@ I'm trying to implement the algorithms in CPP as well as in Ruby as I learn.
 
 ## Algorithms
 
-The below is the implemented list of algorithms
+The below is the implemented list of algorithms.
   - binary search
   - sorting
     - bubble sort
