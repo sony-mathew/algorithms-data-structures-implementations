@@ -27,3 +27,4 @@ The below is the implemented list of algorithms.
 
 Given below is the list of DS that I have tried implementing.
   - stack
+  - linked list
