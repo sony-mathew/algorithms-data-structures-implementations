@@ -20,7 +20,6 @@ The below is the implemented list of algorithms.
     - quick sort
     - counting sort
     - radix sort
-  - priority queue
 
 
 ## Data Structures
@@ -28,3 +27,4 @@ The below is the implemented list of algorithms.
 Given below is the list of DS that I have tried implementing.
   - stack
   - linked list
+  - priority queue
