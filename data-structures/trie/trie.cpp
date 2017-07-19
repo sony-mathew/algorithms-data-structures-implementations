@@ -4,6 +4,7 @@ using namespace std;
 
 #define REP(i, n) for(int i = 0; i < n; i++)
 #define ALPHABET_SIZE 26
+#define TO_INDEX(c) (c - 'a')
 
 struct TrieNode {
   TrieNode *children[ALPHABET_SIZE];
@@ -23,9 +24,47 @@ class Trie {
       return n;
     }
 
-    int char_to_index(char b)
+    bool is_free_node(TrieNode *ptr)
     {
-      return (int)(b - 'a');
+      if (ptr == NULL) return true;
+
+      REP(i, ALPHABET_SIZE)
+        if (ptr -> children[i] != NULL)
+          return false;
+
+      return true;
+    }
+
+    bool recursive_remove(TrieNode *ptr, string key, int level)
+    {
+      if (ptr) {
+        if (level == key.length()) {
+
+          if (ptr -> is_leaf) {
+
+            ptr -> is_leaf = false;
+            
+            if (is_free_node(ptr))
+              return true;
+            
+            return false; 
+          }
+        }
+        else {
+
+          int index = TO_INDEX(key[level]);
+
+          if (recursive_remove(ptr -> children[index], key, level + 1)) {
+            
+            delete ptr -> children[index];
+            ptr -> children[index] = NULL;
+
+            return (!(ptr -> is_leaf) && is_free_node(ptr));
+          }
+
+        }
+      }
+      return false;
     }
 
   public:
@@ -43,7 +82,7 @@ class Trie {
 
       REP(i, key.length()) {
 
-        index = char_to_index(key[i]);
+        index = TO_INDEX(key[i]);
 
         if (ptr -> children[index] == NULL)
           ptr -> children[index] = new_node();
@@ -61,7 +100,7 @@ class Trie {
 
       REP(i, q.length()) {
 
-        index = char_to_index(q[i]);
+        index = TO_INDEX(q[i]);
 
         if (ptr -> children[index] == NULL)
           return false;
@@ -69,6 +108,12 @@ class Trie {
         ptr = ptr -> children[index];
       }
       return ptr -> is_leaf;
+    }
+
+    void remove(string key)
+    {
+      if (key.length() > 0)
+        recursive_remove(root, key, 0);
     }
 };
 
@@ -88,6 +133,13 @@ int main()
     T.insert(keys[i]);
 
   // Search for different keys
+  printf("%s --- %s\n", "the", (T.search("the") ? output[1] : output[0]) );
+  printf("%s --- %s\n", "these", (T.search("these") ? output[1] : output[0]) );
+  printf("%s --- %s\n", "their", (T.search("their") ? output[1] : output[0]) );
+  printf("%s --- %s\n", "thaw", (T.search("thaw") ? output[1] : output[0]) );
+
+  cout << "Removing 'the' from Trie." << endl;
+  T.remove("the");
   printf("%s --- %s\n", "the", (T.search("the") ? output[1] : output[0]) );
   printf("%s --- %s\n", "these", (T.search("these") ? output[1] : output[0]) );
   printf("%s --- %s\n", "their", (T.search("their") ? output[1] : output[0]) );
