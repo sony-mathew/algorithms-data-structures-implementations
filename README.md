@@ -28,3 +28,5 @@ Given below is the list of DS that I have tried implementing.
   - stack
   - linked list
   - priority queue
+  - bst
+  - trie
