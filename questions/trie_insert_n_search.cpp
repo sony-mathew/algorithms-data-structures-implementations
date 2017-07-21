@@ -1,4 +1,7 @@
-// http://practice.geeksforgeeks.org/problems/trie-insert-and-search/0
+/*
+http://practice.geeksforgeeks.org/problems/trie-insert-and-search/0
+*/
+
 #include <iostream>
 
 using namespace std;
