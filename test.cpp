@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -16,6 +17,11 @@ int main()
 
   string d = "something else";
   cout << endl << "Size of d : " << d.length() << endl;
+
+  cout << "Max of long long : " << numeric_limits<long long>::max() << endl;
+  cout << "Min of long long : " << numeric_limits<long long>::min() << endl;
+
+  cout << "Int min : " << INT_MIN;
 
   return 0;
 }

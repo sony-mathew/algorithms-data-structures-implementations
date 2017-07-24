@@ -22,4 +22,5 @@ int main()
   }
   REP(i, n)
     cout << A[i] << " ";
+  cout << endl;
 }
