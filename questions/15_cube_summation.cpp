@@ -1,3 +1,7 @@
+/*
+https://www.hackerrank.com/challenges/cube-summation/problem
+*/
+
 #include <iostream>
 
 using namespace std;

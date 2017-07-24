@@ -21,7 +21,7 @@ int main()
   cout << "Max of long long : " << numeric_limits<long long>::max() << endl;
   cout << "Min of long long : " << numeric_limits<long long>::min() << endl;
 
-  cout << "Int min : " << INT_MIN;
+  cout << "Int min : " << INT_MIN << endl;
 
   return 0;
 }
