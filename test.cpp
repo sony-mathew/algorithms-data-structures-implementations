@@ -5,6 +5,13 @@ using namespace std;
 
 #define REP(i, n) for(int i = 0; i < n; ++i)
 
+void display_array(int *a, int size) {
+  cout << "The array is : " << endl;
+  REP(i, size)
+    cout << a[i] << "  ";
+  cout << endl;
+}
+
 int main()
 {
   int a[5] = {0};
@@ -22,6 +29,11 @@ int main()
   cout << "Min of long long : " << numeric_limits<long long>::min() << endl;
 
   cout << "Int min : " << INT_MIN << endl;
+
+  int A[26] = {0};
+  display_array(A, 26);
+
+  cout << "Find max : " << max(25, 30) << endl;
 
   return 0;
 }
