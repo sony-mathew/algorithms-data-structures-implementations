@@ -11,74 +11,58 @@ using namespace std;
 #define REP(i, n) for(int i = 0; i < n; ++i)
 #define MAXN 100100
 
-class BIT {
-
-  public:
-    int a[1000], bit[1001];
-    int size;
-
-    BIT()
-    {
-      REP(i, 1001)
-        bit[i] = 0;
-    }
-
-    void update(int x, int delta)
-    {
-      for(; x <= size; x += (x & -x) )
-        bit[x] += delta;
-    }
-
-    int prefix_sum(int x)
-    {
-      int sum = 0;
-
-      for(; x > 0 ; x -= (x & -x))
-        sum += bit[x];
-
-      return sum;
-    }
-
-    int cumulative(int x, int y)
-    {
-      return prefix_sum(y) - prefix_sum(x);
-    }
-
-    int kth_item(int x, int y, int k)
-    {
-      
-    }
-};
-
 int main()
 {
   int t, n, q, k, x, y, u_f;
+  int a[10001];
 
   cin >> t;
 
   while(t--) {
     cin >> n;
 
-    BIT B;
-    REP(x, n) {
-      cin >> q;
-      B.a[x] = q;
-      B.update(x + 1, B.a[x]);
-    }
-    B.size = n;
+    REP(i, n)
+      cin >> a[i];
+    
     cin >> q;
 
     REP(m, q) {
+      
       cin >> u_f;
+
       if (u_f == 0) {
         cin >> x >> y >> k;
-        cout << B.kth_item(x, y, k) << endl;
+        
+        vector<int> sub_shelf;
+        bool done_heapify = false;
+
+        for(int z = x - 1, j = 0; z <= y - 1; ++z) {
+          if (j < k) {
+            sub_shelf.push_back(a[z]);
+            ++j;
+          }
+          else {
+            if (!done_heapify) {
+              make_heap(sub_shelf.begin(), sub_shelf.end());
+              done_heapify = true;
+            }
+
+            if (a[z] <= sub_shelf.front()) {
+              pop_heap(sub_shelf.begin(), sub_shelf.end());
+              sub_shelf.push_back(a[z]);
+              push_heap(sub_shelf.begin(), sub_shelf.end());
+            }
+          }
+        }
+
+        if (!done_heapify)
+          make_heap(sub_shelf.begin(), sub_shelf.end());
+
+        cout << sub_shelf.front() << endl;
       }
       else {
         cin >> x >> k;
-        B.update(x, -B.a[x - 1]);
-        B.a[x - 1] = k;
-        B.update(x, B.a[x - 1]);
+        a[x - 1] = k;
       }
     }
   }
